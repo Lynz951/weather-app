@@ -3,16 +3,17 @@
 function createElements(zip) {
 
     const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=369d23ad5471bf036f577bbec69ebdd3`;
+    const tempElement = document.getElementById("Temperature");
 
     axios.get(url)
 
         .then(function (response) {
-            document.getElementById("Temperature").innerText = `It is now ${response.data.main.temp}°Kelvin`
+            tempElement.innerText = `It is now ${response.data.main.temp}°Kelvin`;
+            tempElement.style.color = "black";
             //console.log(response.data.main.temp);
         })
 
         .catch(function (error) {
-            const tempElement = document.getElementById("Temperature");
             tempElement.innerText = error;
             tempElement.style.color = "red";
             console.log(error);
