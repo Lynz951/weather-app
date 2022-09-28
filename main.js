@@ -12,7 +12,9 @@ function createElements(zip) {
         })
 
         .catch(function (error) {
-            document.getElementById("Temperature").innerHTML = error;
+            const tempElement = document.getElementById("Temperature");
+            tempElement.innerText = error;
+            tempElement.style.color = "red";
             console.log(error);
         })
 
