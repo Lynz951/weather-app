@@ -1,32 +1,21 @@
-const url = 'https://api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}';
-const apiKey = '369d23ad5471bf036f577bbec69ebdd3';
-const input = document.querySelector('input');
 
-// axios.get(url)
-//     .then(function (response) {
-//         console.log(response);
-//     })
 
-//     .catch(function (error) {
-//         console.log(error);
-//     })
-//     .then(function () {
-//     });
+function createElements(zip) {
 
-//     or
+    const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=369d23ad5471bf036f577bbec69ebdd3`;
 
-//     axios.get('/user', {
-//         params: {
-//           ID: 12345
-//         }
-//       })
-//       .then(function (response) {
-//         console.log(response);
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       })
-//       .then(function () {
-//         // always executed
-//       });  
-    
+    axios.get(url)
+
+        .then(function (response) {
+            document.getElementById("Temperature").innerText = `It is now ${response.data.main.temp}°Kelvin`
+            console.log(response.data.main.temp);
+        })
+
+        .catch(function (error) {
+            console.log(error);
+        })
+
+        .then(function () {
+            console.log("all done");
+        });
+    }
