@@ -8,10 +8,11 @@ function createElements(zip) {
 
         .then(function (response) {
             document.getElementById("Temperature").innerText = `It is now ${response.data.main.temp}°Kelvin`
-            console.log(response.data.main.temp);
+            //console.log(response.data.main.temp);
         })
 
         .catch(function (error) {
+            document.getElementById("Temperature").innerHTML = error;
             console.log(error);
         })
 
@@ -20,4 +21,11 @@ function createElements(zip) {
         });
     }
 
-    //testing
+window.onload = function() {
+    document.getElementById("sendButton").onclick = function() {
+        //get zip from text field
+        const zip = document.getElementById("zipCodeInput").value;
+        //call 
+        createElements(zip);
+    }
+}
