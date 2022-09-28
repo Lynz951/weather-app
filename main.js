@@ -1,3 +1,12 @@
+// window.onload = function() {
+//     document.getElementById("sendButton").onclick = function() {
+//         //get zip from text field
+//         const zip = document.getElementById("zipCodeInput").value;
+//         //call 
+//         createElements();
+//     }
+// }
+
 document.body.onload = createElements;
 
 function createElements() {
