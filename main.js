@@ -6,10 +6,6 @@ button.type = 'button';
 button.id = 'submit';
 button.value = 'Submit';
 button.className = 'btn';
-
-    const zip = document.getElementById("zipCodeInput").value;
-
-  
  
     button.onclick = function() {
         const zip = document.getElementById("zipCodeInput").value;
@@ -43,11 +39,12 @@ function createElements(zip) {
             let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
             pageIcon.src = iconUrl;
 
-            root.appendChild(cityElement);
-            root.appendChild(tempElement);
-            root.appendChild(condElement);
+            createListItem('li', `Temperature: ${response.data.main.temp}°Kelvin`);
+            createListItem('li', `City: ${response.data.name}`);
+            createListItem('li', `Conditions: ${response.data.weather[0].description}`);
             root.appendChild(pageIcon);
 
+            createListItem(response);
         })
 
         .catch(function (error) {
@@ -58,5 +55,13 @@ function createElements(zip) {
             console.log("all done");
         });
     }
-    
 
+var root = document.getElementById('root');  
+
+let ul = document.getElementById('characters');
+
+function createListItem(tag, text) {
+    let list = document.createElement(tag);
+    list.textContent = text;
+    ul.appendChild(list);
+}
