@@ -50,9 +50,9 @@ function createElements(zip) {
             pageIcon.src = iconUrl;
 
             createListItem('li', `City: ${response.data.name}`);
-            createListItem('li', `Temperature in °Kelvin: ${Math.round(response.data.main.temp)}`);
-            createListItem('li', `Temperature in °Celsius: ${Math.round((response.data.main.temp) - 273)}`);
-            createListItem('li', `Temperature in °Farenheit: ${Math.round((((response.data.main.temp)-273.15)*1.8)+32)}`);
+            createListItem('li', `Temperature in Kelvin: ${Math.round(response.data.main.temp)}°`);
+            createListItem('li', `Temperature in Celsius: ${Math.round((response.data.main.temp) - 273)}°`);
+            createListItem('li', `Temperature in Farenheit: ${Math.round((((response.data.main.temp)-273.15)*1.8)+32)}°`);
             createListItem('li', `Conditions: ${response.data.weather[0].description}`);
             
             root.appendChild(pageIcon);
@@ -60,8 +60,8 @@ function createElements(zip) {
         })
 
         .catch(function (error) {
+            // document.getElementById("instr").innerText = "Error, invalid zipcode.";
             console.log(error);
-            innerText = error;
         })
 
         .then(function () {
@@ -76,24 +76,20 @@ function prettyPage (){
 
     //set attributes on element
     input.setAttribute('id', 'zipCodeInput');
-    input.setAttribute('type', 'text')
+    input.setAttribute('type', 'text');
     input.classList.add('text-center');
     instr.setAttribute('type', 'text');
     instr.setAttribute('id', 'instr');
 
     //set styles on element
     instr.style.color = 'black';
+
     //add text content to element
     input.textContent = 'Enter Zipcode Here';
     instr.textContent = 'Enter Zipcode and then press Submit';
 
     //add element to DOM
     const root = document.getElementById('root');
-    // root.style.backgroundColor = '#C1F4FA';
-    // root.style.justifyContent = 'center';
-    // root.style.width = '400px';
-    // root.style.height = '900px';
-    // root.style.fontSize = '20px';
     root.appendChild(input);
     root.appendChild(instr);
 }
