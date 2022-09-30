@@ -1,5 +1,4 @@
-
-document.body.onload = createElements;
+document.body.onload = prettyPage;
 
 var container = document.getElementById('root');
 var root = document.getElementById('root');  
@@ -14,19 +13,17 @@ root.style.height = '900px';
 root.style.fontSize = '20px';
 root.style.paddingBlock = '30px';
 
-
 button.type = 'button';
 button.id = 'submit';
 button.value = 'Submit';
 button.className = 'btn';
 button.classList = 'toggle("bg-rose")';
-
+container.appendChild(button);
  
 button.onclick = function() {
     const zip = document.getElementById("zipCodeInput").value;
     createElements(zip);
     };
- container.appendChild(button);
 
 function createListItem(tag, text) {
     let list = document.createElement(tag);
@@ -50,18 +47,18 @@ function createElements(zip) {
             pageIcon.src = iconUrl;
 
             createListItem('li', `City: ${response.data.name}`);
-            createListItem('li', `Temperature in °Kelvin: ${Math.round(response.data.main.temp)}`);
-            createListItem('li', `Temperature in °Celsius: ${Math.round((response.data.main.temp) - 273)}`);
-            createListItem('li', `Temperature in °Farenheit: ${Math.round((((response.data.main.temp)-273.15)*1.8)+32)}`);
+            createListItem('li', `Temperature in Kelvin: ${Math.round(response.data.main.temp)}°`);
+            createListItem('li', `Temperature in Celsius: ${Math.round((response.data.main.temp) - 273)}°`);
+            createListItem('li', `Temperature in Farenheit: ${Math.round((((response.data.main.temp)-273.15)*1.8)+32)}°`);
             createListItem('li', `Conditions: ${response.data.weather[0].description}`);
             
             root.appendChild(pageIcon);
-            createListItem(tag, text);
+            document.getElementById("instr").innerText = "";
         })
 
         .catch(function (error) {
+            document.getElementById("instr").innerText = error;
             console.log(error);
-            innerText = error;
         })
 
         .then(function () {
@@ -76,25 +73,20 @@ function prettyPage (){
 
     //set attributes on element
     input.setAttribute('id', 'zipCodeInput');
-    input.setAttribute('type', 'text')
+    input.setAttribute('type', 'text');
     input.classList.add('text-center');
     instr.setAttribute('type', 'text');
     instr.setAttribute('id', 'instr');
 
     //set styles on element
     instr.style.color = 'black';
+
     //add text content to element
     input.textContent = 'Enter Zipcode Here';
     instr.textContent = 'Enter Zipcode and then press Submit';
 
     //add element to DOM
     const root = document.getElementById('root');
-    // root.style.backgroundColor = '#C1F4FA';
-    // root.style.justifyContent = 'center';
-    // root.style.width = '400px';
-    // root.style.height = '900px';
-    // root.style.fontSize = '20px';
     root.appendChild(input);
     root.appendChild(instr);
 }
-prettyPage();
