@@ -1,5 +1,4 @@
-
-document.body.onload = createElements;
+document.body.onload = prettyPage;
 
 var container = document.getElementById('root');
 var root = document.getElementById('root');  
@@ -14,19 +13,17 @@ root.style.height = '900px';
 root.style.fontSize = '20px';
 root.style.paddingBlock = '30px';
 
-
 button.type = 'button';
 button.id = 'submit';
 button.value = 'Submit';
 button.className = 'btn';
 button.classList = 'toggle("bg-rose")';
-
+container.appendChild(button);
  
 button.onclick = function() {
     const zip = document.getElementById("zipCodeInput").value;
     createElements(zip);
     };
- container.appendChild(button);
 
 function createListItem(tag, text) {
     let list = document.createElement(tag);
@@ -56,11 +53,11 @@ function createElements(zip) {
             createListItem('li', `Conditions: ${response.data.weather[0].description}`);
             
             root.appendChild(pageIcon);
-            createListItem(tag, text);
+            document.getElementById("instr").innerText = "";
         })
 
         .catch(function (error) {
-            // document.getElementById("instr").innerText = "Error, invalid zipcode.";
+            document.getElementById("instr").innerText = error;
             console.log(error);
         })
 
@@ -93,4 +90,3 @@ function prettyPage (){
     root.appendChild(input);
     root.appendChild(instr);
 }
-prettyPage();
