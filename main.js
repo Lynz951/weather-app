@@ -6,7 +6,6 @@ let ul = document.getElementById('root');
 var button = document.createElement('input');
 
 root.textContent = 'My Weather App';
-root.style.backgroundColor = '#C1F4FA';
 root.style.justifyContent = 'center';
 root.style.width = '400px';
 root.style.height = '900px';
